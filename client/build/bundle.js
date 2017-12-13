@@ -195,7 +195,7 @@ var addMarkerOnSubmit = function(countryList){
 var displayMap = function(){
   var map = document.getElementById('map-container');
   var center = {lat: 0, lng: 0};
-  mainMap = new MapWrapper(map, center, 5);
+  mainMap = new MapWrapper(map, center, 2);
   console.log(mainMap.markers.length);
 };
 
