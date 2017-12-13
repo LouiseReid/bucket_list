@@ -1,13 +1,25 @@
+body {
+  margin: 0;
+}
+
 /*HEADER STYLES*/
 
 header {
   margin: 0;
   display: flex;
   justify-content: space-around;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding: 25px 100px 25px 100px;
+  background-color: #89C4F4;
 }
 
 select, input, button {
   font-size: 24px;
+  border-radius: 10px;
+  border: 0;
+  padding: 5px;
+  background-color: #FFB61E;
+  color: white;
+}
+
+select, button {
 }
