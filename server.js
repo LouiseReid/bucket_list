@@ -30,3 +30,13 @@ app.get('/countries', function(req, res){
     res.json(results);
   });
 })
+
+app.post('/countries', function(req, res){
+  db.collection('countries').save(req.body, function(err, result){
+    if(err){
+      return console.log(err);
+    }
+    console.log('saved to db');
+    res.redirect('/')
+  })
+})
