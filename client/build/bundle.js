@@ -70,23 +70,28 @@
 var map = __webpack_require__(1)
 
 var app = function(){
-    var url = "https://restcountries.eu/rest/v2/all";
-    makeRequest(url, requestComplete);
-    displayMap();
+  var url = "https://restcountries.eu/rest/v2/all";
+  makeRequest(url, requestComplete);
+  displayMap();
+
+  var select = document.getElementById('countries-list')
+  select.addEventListener('change', function(){
+    console.log("Hello")
+  })
 };
 
 var makeRequest = function(url, callback){
-    request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.addEventListener('load', callback);
-    request.send();
+  request = new XMLHttpRequest();
+  request.open('GET', url);
+  request.addEventListener('load', callback);
+  request.send();
 };
 
 var requestComplete = function(){
-    if(this.status!=200){return};
-    var jsonString = this.responseText;
-    var countryList = JSON.parse(jsonString);
-    populateSelect(countryList)
+  if(this.status!=200){return};
+  var jsonString = this.responseText;
+  var countryList = JSON.parse(jsonString);
+  populateSelect(countryList)
 }
 //
 var populateSelect = function(countryList) {
