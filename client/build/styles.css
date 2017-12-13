@@ -37,6 +37,21 @@ select, input, button {
   width: 100vw;
 }
 
-#name-list{
+#user-list{
   width: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #5b93c1;
+}
+
+.user-header {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#user-dropper {
+  width:100%;
+  font-size: 18px;
 }
