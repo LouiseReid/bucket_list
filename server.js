@@ -10,7 +10,7 @@ app.use(express.static('client/build'));
 var MongoClient = require("mongodb").MongoClient;
 
 
-MongoClient.connect("mongodb://localhost:27017/errors", function(err, database){
+MongoClient.connect("mongodb://localhost:27017/bucketList", function(err, database){
   if (err){
     return console.log(err);
   }
