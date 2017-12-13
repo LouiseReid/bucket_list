@@ -1,10 +1,15 @@
-var map = require('./mapWrapper.js')
+var map = require('./mapWrapper')
+
+var displayMap = function(){
+  var map = document.getElementById('container');
+  var center = {lat: 0, lng: 0};
+  var mainMap = new MapWrapper(map, center, 5);
+};
 
 var app = function(){
     var url = "https://restcountries.eu/rest/v2/all";
     makeRequest(url, requestComplete);
     displayMap();
-
 };
 
 var makeRequest = function(url, callback){
@@ -28,12 +33,6 @@ var populateSelect = function(countryList) {
     option.innerText = country.name;
     select.appendChild(option);
   })
-}
-
-var displayMap = function(){
-  var map = document.getElementById('container');
-  var center = {lat: 0, lng: 0};
-  var mainMap = new MapWrapper(map, center, 5);
 }
 
 window.addEventListener("load", app);
