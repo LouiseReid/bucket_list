@@ -74,11 +74,17 @@ var app = function(){
   makeRequest(url, requestComplete);
   displayMap();
 
-  // var select = document.getElementById('countries-list')
-  // select.addEventListener('change', function(){
-  //   console.log(select.selectedIndex)
-  //   console.log()
-  // })
+  // var submit = document.getElementById("submit");
+  // var latInput = document.getElementById('lat');
+  // var lngInput = document.getElementById('lng');
+  //
+  // submit.addEventListener('click', function(){
+  //
+  //   latInput.value = countryList[select.selectedIndex-1].latlng[0];
+  //   lngInput.value = countryList[select.selectedIndex-1].latlng[1];
+  //   mainMap.addMarker(latInput.value, lngInput.value);
+  // });
+
 };
 
 var makeRequest = function(url, callback){
@@ -92,7 +98,8 @@ var requestComplete = function(){
   if(this.status!=200){return};
   var jsonString = this.responseText;
   var countryList = JSON.parse(jsonString);
-  populateSelect(countryList)
+  addMarkerOnSubmit(countryList);
+  populateSelect(countryList);
 }
 
 var populateSelect = function(countryList) {
@@ -111,10 +118,28 @@ var populateSelect = function(countryList) {
   })
 }
 
+var addMarkerOnSubmit = function(countryList){
+  var select = document.getElementById('countries-list')
+  var submit = document.getElementById("submit");
+  var latInput = document.getElementById('lat');
+  var lngInput = document.getElementById('lng');
+
+
+  submit.addEventListener('click', function(){
+    latInput.value = countryList[select.selectedIndex-1].latlng[0];
+    lngInput.value = countryList[select.selectedIndex-1].latlng[1];
+
+    var lat = parseFloat(latInput.value);
+    var lng = parseFloat(lngInput.value);
+    mainMap.addMarker({lat: lat, lng: lng});
+  });
+}
+
 var displayMap = function(){
   var map = document.getElementById('map-container');
   var center = {lat: 0, lng: 0};
-  var mainMap = new MapWrapper(map, center, 5);
+  mainMap = new MapWrapper(map, center, 5);
+  console.log(mainMap.markers.length);
 };
 
 
@@ -130,14 +155,16 @@ MapWrapper = function(container, coords, zoom){
     center: coords,
     zoom: zoom
   });
+  this.markers = [];
 }
 
-MapWrapper.prototype.addMarker = function(coords, owner){
+MapWrapper.prototype.addMarker = function(coords){
   var marker = new google.maps.Marker({
     position: coords,
     map: this.googleMap
   });
-  attachInfoWindow(owner);
+  this.markers.push(marker);
+  // attachInfoWindow(owner);
 }
 
 MapWrapper.prototype.attachInfoWindow = function(owner){
