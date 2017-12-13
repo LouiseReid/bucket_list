@@ -22,7 +22,10 @@ select, input, button {
   color: white;
   max-width: 200px;
   font-family: 'Open Sans', sans-serif;
+}
 
+.hidden-input{
+  display:none;
 }
 
 /*MAIN STYLEs*/
