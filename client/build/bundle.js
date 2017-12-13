@@ -71,6 +71,17 @@ var map = __webpack_require__(1)
 var CountryView = __webpack_require__(2)
 
 var app = function(){
+
+    var url = "https://restcountries.eu/rest/v2/all";
+    makeRequest(url, requestAllCountries);
+    var url = "http://localhost:3000/countries";
+    makeRequest(url, requestUsers);
+    displayMap();
+    var userDropper = document.getElementById('user-dropper');
+    userDropper.addEventListener("change", function(){
+      makeRequest(url, requestUserCountries);
+    });
+
   var url = "https://restcountries.eu/rest/v2/all";
   var api = "/countries"
 
@@ -89,6 +100,7 @@ var app = function(){
   //   mainMap.addMarker(latInput.value, lngInput.value);
   // });
 
+
 };
 
 var makeRequest = function(url, callback){
@@ -99,7 +111,31 @@ var makeRequest = function(url, callback){
 };
 
 
-var requestComplete = function(){
+var requestAllCountries = function(){
+    if(this.status!=200){return};
+    var jsonString = this.responseText;
+    var countryList = JSON.parse(jsonString);
+    populateCountries(countryList)
+}
+
+var requestUsers = function(){
+    if(this.status!=200){return};
+    var jsonString = this.responseText;
+    var userList = JSON.parse(jsonString);
+    populateUserlist(userList)
+}
+
+var requestUserCountries = function(userName){
+    if(this.status!=200){return};
+    var jsonString = this.responseText;
+    var bucketList = JSON.parse(jsonString);
+    populateBucketList(bucketList)
+}
+
+//
+var populateCountries = function(countryList) {
+
+  var requestComplete = function(){
   if(this.status!=200){return};
   var jsonString = this.responseText;
   var countryList = JSON.parse(jsonString);
@@ -116,6 +152,7 @@ var requestComplete2 = function(){
 }
 
 var populateSelect = function(countryList) {
+
   var select = document.getElementById("countries-list");
   countryList.forEach(function(country){
     var option = document.createElement('option');
@@ -130,6 +167,26 @@ var populateSelect = function(countryList) {
     lngInput.value = countryList[select.selectedIndex-1].latlng[1];
   })
 }
+
+
+var populateUserlist = function(userList){
+  var select = document.getElementById("user-dropper");
+  userList.forEach(function(user){
+    var option = document.createElement('option');
+    option.innerText = user.name;
+    select.appendChild(option);
+  })
+}
+
+var populateBucketList = function(bucketList){
+  var userName = document.getElementById("user-dropper").value;
+  var bList = document.getElementById("user-countries")
+  bucketList.forEach(function(item){
+      if (item.name === userName){
+        var liTag = document.createElement('li');
+        liTag.innerText = item.country;
+        bList.appendChild(liTag);
+      }
 
 var addMarkerOnSubmit = function(countryList){
   var select = document.getElementById('countries-list')
@@ -154,6 +211,7 @@ var displayMap = function(){
   mainMap = new MapWrapper(map, center, 5);
   console.log(mainMap.markers.length);
 };
+
 
 
 window.addEventListener("load", app);
