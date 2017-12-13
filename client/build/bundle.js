@@ -79,6 +79,7 @@ var app = function(){
   displayMap();
   var userDropper = document.getElementById('user-dropper');
   userDropper.addEventListener("change", function(){
+    var url = "http://localhost:3000/countries";
     makeRequest(url, requestUserCountries);
   });
 
@@ -165,6 +166,7 @@ var populateUserlist = function(userList){
 var populateBucketList = function(bucketList){
   var userName = document.getElementById("user-dropper").value;
   var bList = document.getElementById("user-countries")
+  bList.innerHTML = "";
   bucketList.forEach(function(item){
     if (item.name === userName){
       var liTag = document.createElement('li');
