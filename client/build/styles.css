@@ -22,8 +22,18 @@ select, input, button {
   max-width: 150px;
 }
 
+/*MAIN STYLEs*/
+
+#container{
+  display: flex;
+}
+
 #map-container {
   border: 1px solid black;
   height: 100vh;
   width: 100vw;
+}
+
+#name-list{
+  width: 200px;
 }
