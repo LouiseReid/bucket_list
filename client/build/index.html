@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Maps</title>
+  <script src="bundle.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <select id="countries-list">
-      <option>Australia</option>
-      <option>Sweden</option>
-      <option>Zambia</option>
+      <option disabled select>Select a country</option>
+    </select>
       <form action="">
         <input type="text" placeholder="Your Name">
       </form>
-    </select>
     <button id="submit">Submit</button>
   </header>
   <main id="container">

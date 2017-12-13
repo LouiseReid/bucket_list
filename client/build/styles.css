@@ -19,9 +19,7 @@ select, input, button {
   padding: 5px;
   background-color: #FFB61E;
   color: white;
-}
-
-select, button {
+  max-width: 150px;
 }
 
 #container {
