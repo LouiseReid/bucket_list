@@ -1,0 +1,13 @@
+/*HEADER STYLES*/
+
+header {
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+select, input, button {
+  font-size: 24px;
+}
