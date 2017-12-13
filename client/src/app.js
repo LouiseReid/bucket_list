@@ -1,4 +1,5 @@
 var map = require('./mapWrapper')
+var CountryView = require('./views/countryView')
 
 var app = function(){
 
@@ -13,7 +14,10 @@ var app = function(){
     });
 
   var url = "https://restcountries.eu/rest/v2/all";
+  var api = "/countries"
+
   makeRequest(url, requestComplete);
+  makeRequest(api, requestComplete2);
   displayMap();
 
   // var submit = document.getElementById("submit");
@@ -68,6 +72,14 @@ var requestComplete = function(){
   var countryList = JSON.parse(jsonString);
   addMarkerOnSubmit(countryList);
   populateSelect(countryList);
+}
+
+var requestComplete2 = function(){
+  if(this.status!=200){return};
+  var jsonString = this.responseText;
+  var countries = JSON.parse(jsonString);
+  var markers = new CountryView(countries);
+
 }
 
 var populateSelect = function(countryList) {

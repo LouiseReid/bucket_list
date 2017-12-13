@@ -68,6 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = __webpack_require__(1)
+var CountryView = __webpack_require__(2)
 
 var app = function(){
 
@@ -82,7 +83,10 @@ var app = function(){
     });
 
   var url = "https://restcountries.eu/rest/v2/all";
+  var api = "/countries"
+
   makeRequest(url, requestComplete);
+  makeRequest(api, requestComplete2);
   displayMap();
 
   // var submit = document.getElementById("submit");
@@ -130,13 +134,21 @@ var requestUserCountries = function(userName){
 
 //
 var populateCountries = function(countryList) {
-=======
-var requestComplete = function(){
+
+  var requestComplete = function(){
   if(this.status!=200){return};
   var jsonString = this.responseText;
   var countryList = JSON.parse(jsonString);
   addMarkerOnSubmit(countryList);
   populateSelect(countryList);
+}
+
+var requestComplete2 = function(){
+  if(this.status!=200){return};
+  var jsonString = this.responseText;
+  var countries = JSON.parse(jsonString);
+  var markers = new CountryView(countries);
+
 }
 
 var populateSelect = function(countryList) {
@@ -248,6 +260,29 @@ MapWrapper.prototype.goToGeolocation = function(map){
     map.googleMap.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
   });
 }
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+CountryView = function(countries){
+  this.render(countries)
+}
+
+
+CountryView.prototype.render = function (countries) {
+  console.log(countries);
+
+  countries.forEach(function(country){
+    var lat = parseFloat(country.lat)
+    var lng = parseFloat(country.lng)
+    mainMap.addMarker({lat: lat, lng: lng})
+  })
+};
+
+
+module.exports = CountryView;
 
 
 /***/ })
