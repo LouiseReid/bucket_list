@@ -70,6 +70,7 @@
 var app = function(){
     var url = "https://restcountries.eu/rest/v2/all";
     makeRequest(url, requestComplete);
+    displayMap();
 };
 
 var makeRequest = function(url, callback){
@@ -94,7 +95,7 @@ var populateSelect = function(countryList) {
     select.appendChild(option);
   })
 
-}
+
 
 window.addEventListener("load", app);
 

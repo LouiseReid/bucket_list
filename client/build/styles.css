@@ -21,3 +21,9 @@ select, input, button {
   color: white;
   max-width: 150px;
 }
+
+#container {
+  border: 1px solid black;
+  height: 400px;
+  width: 400px;
+}
