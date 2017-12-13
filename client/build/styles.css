@@ -21,5 +21,7 @@ select, input, button {
   color: white;
 }
 
-select, button {
+#container {
+  height: 600px;
+  width: 600px;
 }
