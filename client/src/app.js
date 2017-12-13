@@ -4,6 +4,14 @@ var app = function(){
   var url = "https://restcountries.eu/rest/v2/all";
   makeRequest(url, requestComplete);
   displayMap();
+  var submit = document.getElementById("submit");
+  console.log(submit);
+  submit.addEventListener('click', function(){
+      console.log("is this working?");
+      latInput.value = countryList[select.selectedIndex-1].latlng[0];
+      lngInput.value = countryList[select.selectedIndex-1].latlng[1];
+      mainMap.addMarker({latInput.value, lngInput.value});
+  });
 
   // var select = document.getElementById('countries-list')
   // select.addEventListener('change', function(){
@@ -45,7 +53,7 @@ var populateSelect = function(countryList) {
 var displayMap = function(){
   var map = document.getElementById('map-container');
   var center = {lat: 0, lng: 0};
-  var mainMap = new MapWrapper(map, center, 5);
+  mainMap = new MapWrapper(map, center, 5);
 };
 
 
