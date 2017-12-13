@@ -1,7 +1,7 @@
 var map = require('./mapWrapper')
 
 var displayMap = function(){
-  var map = document.getElementById('container');
+  var map = document.getElementById('map-container');
   var center = {lat: 0, lng: 0};
   var mainMap = new MapWrapper(map, center, 5);
 };
