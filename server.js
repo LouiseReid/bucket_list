@@ -40,3 +40,8 @@ app.post('/countries', function(req, res){
     res.redirect('/')
   })
 })
+
+app.post('/delete', function(req, res){
+  db.collection('countries').remove({})
+  res.redirect('/')
+})
