@@ -13,15 +13,16 @@
 <body>
   <header>
     <form action="/countries" method="POST">
-    <select name="country" id="countries-list">
-      <option disabled select>Select a country</option>
-    </select>
-    <input class="hidden-input" type="text" placeholder="lat" name="lat">
-    <input class="hidden-input" type="text" placeholder="lng" name="lng">
+      <select name="country" id="countries-list">
+        <option disabled selected>Select a country</option>
+      </select>
 
-        <input type="text" placeholder="Your Name" name="name">
-        <button id="submit">Submit</button>
-      </form>
+      <input id="lat" class="hidden-input" type="text" placeholder="lat" name="lat">
+      <input id="lng" class="hidden-input" type="text" placeholder="lng" name="lng">
+
+      <input type="text" placeholder="Your Name" name="name">
+      <button id="submit">Submit</button>
+    </form>
   </header>
   <main id="container">
     <div id="map-container"></div>

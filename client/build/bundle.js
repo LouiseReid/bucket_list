@@ -74,10 +74,11 @@ var app = function(){
   makeRequest(url, requestComplete);
   displayMap();
 
-  var select = document.getElementById('countries-list')
-  select.addEventListener('change', function(){
-    console.log("Hello")
-  })
+  // var select = document.getElementById('countries-list')
+  // select.addEventListener('change', function(){
+  //   console.log(select.selectedIndex)
+  //   console.log()
+  // })
 };
 
 var makeRequest = function(url, callback){
@@ -93,13 +94,20 @@ var requestComplete = function(){
   var countryList = JSON.parse(jsonString);
   populateSelect(countryList)
 }
-//
+
 var populateSelect = function(countryList) {
   var select = document.getElementById("countries-list");
   countryList.forEach(function(country){
     var option = document.createElement('option');
     option.innerText = country.name;
     select.appendChild(option);
+  });
+
+  select.addEventListener('change', function(){
+    var latInput = document.getElementById('lat');
+    var lngInput = document.getElementById('lng');
+    latInput.value = countryList[select.selectedIndex-1].latlng[0];
+    lngInput.value = countryList[select.selectedIndex-1].latlng[1];
   })
 }
 
