@@ -72,15 +72,15 @@ var CountryView = __webpack_require__(2)
 
 var app = function(){
 
-    var url = "https://restcountries.eu/rest/v2/all";
-    makeRequest(url, requestAllCountries);
-    var url = "http://localhost:3000/countries";
-    makeRequest(url, requestUsers);
-    displayMap();
-    var userDropper = document.getElementById('user-dropper');
-    userDropper.addEventListener("change", function(){
-      makeRequest(url, requestUserCountries);
-    });
+  var url = "https://restcountries.eu/rest/v2/all";
+  makeRequest(url, requestAllCountries);
+  var url = "http://localhost:3000/countries";
+  makeRequest(url, requestUsers);
+  displayMap();
+  var userDropper = document.getElementById('user-dropper');
+  userDropper.addEventListener("change", function(){
+    makeRequest(url, requestUserCountries);
+  });
 
   var url = "https://restcountries.eu/rest/v2/all";
   var api = "/countries"
@@ -88,18 +88,6 @@ var app = function(){
   makeRequest(url, requestComplete);
   makeRequest(api, requestComplete2);
   displayMap();
-
-  // var submit = document.getElementById("submit");
-  // var latInput = document.getElementById('lat');
-  // var lngInput = document.getElementById('lng');
-  //
-  // submit.addEventListener('click', function(){
-  //
-  //   latInput.value = countryList[select.selectedIndex-1].latlng[0];
-  //   lngInput.value = countryList[select.selectedIndex-1].latlng[1];
-  //   mainMap.addMarker(latInput.value, lngInput.value);
-  // });
-
 
 };
 
@@ -112,30 +100,27 @@ var makeRequest = function(url, callback){
 
 
 var requestAllCountries = function(){
-    if(this.status!=200){return};
-    var jsonString = this.responseText;
-    var countryList = JSON.parse(jsonString);
-    populateCountries(countryList)
+  if(this.status!=200){return};
+  var jsonString = this.responseText;
+  var countryList = JSON.parse(jsonString);
+  populateSelect(countryList)
 }
 
 var requestUsers = function(){
-    if(this.status!=200){return};
-    var jsonString = this.responseText;
-    var userList = JSON.parse(jsonString);
-    populateUserlist(userList)
+  if(this.status!=200){return};
+  var jsonString = this.responseText;
+  var userList = JSON.parse(jsonString);
+  populateUserlist(userList)
 }
 
 var requestUserCountries = function(userName){
-    if(this.status!=200){return};
-    var jsonString = this.responseText;
-    var bucketList = JSON.parse(jsonString);
-    populateBucketList(bucketList)
+  if(this.status!=200){return};
+  var jsonString = this.responseText;
+  var bucketList = JSON.parse(jsonString);
+  populateBucketList(bucketList)
 }
 
-//
-var populateCountries = function(countryList) {
-
-  var requestComplete = function(){
+var requestComplete = function(){
   if(this.status!=200){return};
   var jsonString = this.responseText;
   var countryList = JSON.parse(jsonString);
@@ -148,7 +133,6 @@ var requestComplete2 = function(){
   var jsonString = this.responseText;
   var countries = JSON.parse(jsonString);
   var markers = new CountryView(countries);
-
 }
 
 var populateSelect = function(countryList) {
@@ -182,11 +166,13 @@ var populateBucketList = function(bucketList){
   var userName = document.getElementById("user-dropper").value;
   var bList = document.getElementById("user-countries")
   bucketList.forEach(function(item){
-      if (item.name === userName){
-        var liTag = document.createElement('li');
-        liTag.innerText = item.country;
-        bList.appendChild(liTag);
-      }
+    if (item.name === userName){
+      var liTag = document.createElement('li');
+      liTag.innerText = item.country;
+      bList.appendChild(liTag);
+    }
+  });
+}
 
 var addMarkerOnSubmit = function(countryList){
   var select = document.getElementById('countries-list')
@@ -202,6 +188,7 @@ var addMarkerOnSubmit = function(countryList){
     var lat = parseFloat(latInput.value);
     var lng = parseFloat(lngInput.value);
     mainMap.addMarker({lat: lat, lng: lng});
+
   });
 }
 
