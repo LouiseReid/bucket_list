@@ -3,6 +3,7 @@ MapWrapper = function(container, coords, zoom){
     center: coords,
     zoom: zoom
   });
+  this.markers = [];
 }
 
 MapWrapper.prototype.addMarker = function(coords){
@@ -10,6 +11,7 @@ MapWrapper.prototype.addMarker = function(coords){
     position: coords,
     map: this.googleMap
   });
+  this.markers.push(marker);
   // attachInfoWindow(owner);
 }
 
