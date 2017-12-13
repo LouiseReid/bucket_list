@@ -65,12 +65,15 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = __webpack_require__(1)
 
 var app = function(){
     var url = "https://restcountries.eu/rest/v2/all";
     makeRequest(url, requestComplete);
     displayMap();
+
 };
 
 var makeRequest = function(url, callback){
@@ -94,10 +97,34 @@ var populateSelect = function(countryList) {
     option.innerText = country.name;
     select.appendChild(option);
   })
+}
 
-
+var displayMap = function(){
+  var map = document.getElementById('container');
+  var center = {lat: 0, lng: 0};
+  var mainMap = new MapWrapper(map, center, 5);
+}
 
 window.addEventListener("load", app);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+var MapWrapper = function(container, coords, zoom){
+  this.googleMap = new google.maps.Map(container, {
+    center: coords,
+    zoom: zoom
+  });
+}
+
+MapWrapper.prototype.addMarker = function(coords){
+  var marker = new google.maps.Marker({
+    position: coords,
+    map: this.googleMap
+  });
+}
 
 
 /***/ })
