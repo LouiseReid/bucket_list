@@ -20,18 +20,6 @@ var app = function(){
   makeRequest(api, requestComplete2);
   displayMap();
 
-  // var submit = document.getElementById("submit");
-  // var latInput = document.getElementById('lat');
-  // var lngInput = document.getElementById('lng');
-  //
-  // submit.addEventListener('click', function(){
-  //
-  //   latInput.value = countryList[select.selectedIndex-1].latlng[0];
-  //   lngInput.value = countryList[select.selectedIndex-1].latlng[1];
-  //   mainMap.addMarker(latInput.value, lngInput.value);
-  // });
-
-
 };
 
 var makeRequest = function(url, callback){
