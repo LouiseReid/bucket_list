@@ -2,10 +2,7 @@ CountryView = function(countries){
   this.render(countries)
 }
 
-
 CountryView.prototype.render = function (countries) {
-  console.log(countries);
-
   countries.forEach(function(country){
     var lat = parseFloat(country.lat)
     var lng = parseFloat(country.lng)

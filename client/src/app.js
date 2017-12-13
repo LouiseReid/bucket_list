@@ -2,7 +2,6 @@ var map = require('./mapWrapper')
 var CountryView = require('./views/countryView')
 
 var app = function(){
-
   var url = "https://restcountries.eu/rest/v2/all";
   makeRequest(url, requestAllCountries);
   var url = "http://localhost:3000/countries";
@@ -20,7 +19,6 @@ var app = function(){
   makeRequest(url, requestComplete);
   makeRequest(api, requestComplete2);
   displayMap();
-
 };
 
 var makeRequest = function(url, callback){
@@ -68,7 +66,6 @@ var requestComplete2 = function(){
 }
 
 var populateSelect = function(countryList) {
-
   var select = document.getElementById("countries-list");
   countryList.forEach(function(country){
     var option = document.createElement('option');
@@ -83,7 +80,6 @@ var populateSelect = function(countryList) {
     lngInput.value = countryList[select.selectedIndex-1].latlng[1];
   })
 }
-
 
 var populateUserlist = function(userList){
   var select = document.getElementById("user-dropper");
@@ -113,7 +109,6 @@ var addMarkerOnSubmit = function(countryList){
   var latInput = document.getElementById('lat');
   var lngInput = document.getElementById('lng');
 
-
   submit.addEventListener('click', function(){
     latInput.value = countryList[select.selectedIndex-1].latlng[0];
     lngInput.value = countryList[select.selectedIndex-1].latlng[1];
@@ -121,7 +116,6 @@ var addMarkerOnSubmit = function(countryList){
     var lat = parseFloat(latInput.value);
     var lng = parseFloat(lngInput.value);
     mainMap.addMarker({lat: lat, lng: lng});
-
   });
 }
 
@@ -129,7 +123,6 @@ var displayMap = function(){
   var map = document.getElementById('map-container');
   var center = {lat: 0, lng: 0};
   mainMap = new MapWrapper(map, center, 2);
-  console.log(mainMap.markers.length);
 };
 
 
